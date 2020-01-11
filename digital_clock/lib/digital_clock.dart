@@ -4,9 +4,11 @@
 
 import 'dart:async';
 
-import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:flutter_clock_helper/model.dart';
+import 'package:digital_clock/animation/seconds_animator.dart';
 
 enum _Element {
   background,
@@ -40,12 +42,15 @@ class DigitalClock extends StatefulWidget {
 
 class _DigitalClockState extends State<DigitalClock> {
   DateTime _dateTime = DateTime.now();
+  num _currentSecond;
+  bool isInitialLoad;
   Timer _timer;
 
   @override
   void initState() {
     super.initState();
     widget.model.addListener(_updateModel);
+    isInitialLoad = true;
     _updateTime();
     _updateModel();
   }
@@ -76,20 +81,33 @@ class _DigitalClockState extends State<DigitalClock> {
   void _updateTime() {
     setState(() {
       _dateTime = DateTime.now();
+
+      // set current second for triggering differnt container animations
+      _currentSecond = _dateTime.second;
+      print('currentSecond = $_currentSecond');
+
       // Update once per minute. If you want to update every second, use the
       // following code.
-      _timer = Timer(
-        Duration(minutes: 1) -
-            Duration(seconds: _dateTime.second) -
-            Duration(milliseconds: _dateTime.millisecond),
-        _updateTime,
-      );
-      // Update once per second, but make sure to do it at the beginning of each
-      // new second, so that the clock is accurate.
       // _timer = Timer(
-      //   Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+      //   Duration(minutes: 1) -
+      //       Duration(seconds: _dateTime.second) -
+      //       Duration(milliseconds: _dateTime.millisecond),
       //   _updateTime,
       // );
+
+      // Update once per second, but make sure to do it at the beginning of each
+      // // new second, so that the clock is accurate.
+      _timer = Timer(
+        Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+        _updateTime,
+      );
+
+      if (_currentSecond == 0 ||
+          _currentSecond == 15 ||
+          _currentSecond == 30 ||
+          _currentSecond == 45) {
+        isInitialLoad = false;
+      }
     });
   }
 
@@ -98,11 +116,33 @@ class _DigitalClockState extends State<DigitalClock> {
     final colors = Theme.of(context).brightness == Brightness.light
         ? _lightTheme
         : _darkTheme;
-    final hour =
-        DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
+
+    final is24HourFormat = widget.model.is24HourFormat;
+
+    final hour = DateFormat(is24HourFormat ? 'HH' : 'hh').format(_dateTime);
+    final hourDigitOne = hour.substring(0, 1);
+    final hourDigitTwo = hour.substring(1, 2);
+
     final minute = DateFormat('mm').format(_dateTime);
-    final fontSize = MediaQuery.of(context).size.width / 3.5;
-    final offset = -fontSize / 7;
+    final minuteDigitOne = minute.substring(0, 1);
+    final minuteDigitTwo = minute.substring(1, 2);
+
+    // Set boxHeight and boxWidth based on screen dimensions
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = (3 / 5 * screenWidth);
+
+    final containerWidth = screenWidth - 4;
+    final containerHeight = screenHeight - 4;
+
+    // final smallBoxWidth = 2 / 5 * containerWidth;
+    // final largeBoxWidth = 3 / 5 * containerWidth;
+
+    final boxWidth = containerWidth / 2;
+    final boxHeight = containerHeight / 2;
+
+    // Set font size and styling
+    final fontSize = 4 / 5 * boxHeight;
+    // final offset = -fontSize / 7;
     final defaultStyle = TextStyle(
       color: colors[_Element.text],
       fontFamily: 'PressStart2P',
@@ -116,19 +156,114 @@ class _DigitalClockState extends State<DigitalClock> {
       ],
     );
 
-    return Container(
-      color: colors[_Element.background],
-      child: Center(
-        child: DefaultTextStyle(
-          style: defaultStyle,
-          child: Stack(
-            children: <Widget>[
-              Positioned(left: offset, top: 0, child: Text(hour)),
-              Positioned(right: offset, bottom: offset, child: Text(minute)),
-            ],
-          ),
+    return Column(
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              color: Colors.orange,
+              height: boxHeight,
+              width: boxWidth,
+              child: Stack(
+                children: <Widget>[
+                  if (_currentSecond > 0)
+                    SecondsBarAnimator(
+                      containerWidth: boxWidth,
+                      containerHeight: boxHeight,
+                      currentSecond: _currentSecond,
+                      finalSecond: 15,
+                      isInitialLoad: isInitialLoad,
+                    ),
+                  Center(
+                    child: DefaultTextStyle(
+                      style: defaultStyle,
+                      child: Text(hourDigitOne),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.red,
+              height: boxHeight,
+              width: boxWidth,
+              child: Stack(
+                children: <Widget>[
+                  if (_currentSecond >= 15)
+                    SecondsBarAnimator(
+                      containerWidth: boxWidth,
+                      containerHeight: boxHeight,
+                      currentSecond: _currentSecond,
+                      finalSecond: 30,
+                      isInitialLoad: isInitialLoad,
+                    ),
+                  Center(
+                    child: DefaultTextStyle(
+                      style: defaultStyle,
+                      child: Text(hourDigitTwo),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-      ),
+        Row(
+          children: <Widget>[
+            Container(
+              color: Colors.lightBlue,
+              height: boxHeight,
+              width: boxWidth,
+              child: Stack(
+                children: <Widget>[
+                  if (_currentSecond >= 45)
+                    SecondsBarAnimator(
+                      containerWidth: boxWidth,
+                      containerHeight: boxHeight,
+                      currentSecond: _currentSecond,
+                      finalSecond: 59,
+                      isInitialLoad: isInitialLoad,
+                    ),
+                  Center(
+                    child: DefaultTextStyle(
+                      style: defaultStyle,
+                      child: Text(minuteDigitOne),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.green,
+              height: boxHeight,
+              width: boxWidth,
+              child: Stack(
+                children: <Widget>[
+                  if (_currentSecond >= 30)
+                    SecondsBarAnimator(
+                      containerWidth: boxWidth,
+                      containerHeight: boxHeight,
+                      currentSecond: _currentSecond,
+                      finalSecond: 45,
+                      isInitialLoad: isInitialLoad,
+                    ),
+                  Center(
+                    child: DefaultTextStyle(
+                      style: defaultStyle,
+                      child: Text(minuteDigitTwo),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
