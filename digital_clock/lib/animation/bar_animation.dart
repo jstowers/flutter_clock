@@ -1,16 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class VerticalBarAnimation {
+class BarAnimation {
   final controller;
-  final containerHeight;
   final timeInitial;
   final timeFinal;
   final beginAnimationPosition;
   final endAnimationPosition;
 
-  VerticalBarAnimation({
+  BarAnimation({
     @required this.controller,
-    @required this.containerHeight,
     @required this.timeInitial,
     @required this.timeFinal,
     @required this.beginAnimationPosition,

@@ -1,4 +1,6 @@
 import 'package:digital_clock/animation/initial_load_page.dart';
+import 'package:digital_clock/animation/seconds_horizontal_detail_page.dart';
+import 'package:digital_clock/animation/seconds_vertical_two_bars_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:digital_clock/animation/seconds_detail_page.dart';
@@ -45,8 +47,9 @@ class _SecondsBarAnimator extends State<SecondsBarAnimator>
 
   @override
   Widget build(BuildContext context) {
+    final currentSecond = widget.currentSecond;
+
     if (widget.isInitialLoad) {
-      print('IS INITIAL LOAD');
       return InitialLoadPage(
         controller: _controller,
         containerWidth: widget.containerWidth,
@@ -54,8 +57,19 @@ class _SecondsBarAnimator extends State<SecondsBarAnimator>
         currentSecond: widget.currentSecond,
         finalSecond: widget.finalSecond,
       );
+    } else if (currentSecond >= 15 && currentSecond < 30) {
+      return SecondsHorizontalDetailPage(
+        controller: _controller,
+        containerWidth: widget.containerWidth,
+        containerHeight: widget.containerHeight,
+      );
+    } else if (currentSecond >= 30 && currentSecond < 45) {
+      return SecondsVerticalTwoBarsDetailPage(
+        controller: _controller,
+        containerWidth: widget.containerWidth,
+        containerHeight: widget.containerHeight,
+      );
     } else {
-      print('NOT INITIAL LOAD');
       return SecondsDetailPage(
         controller: _controller,
         containerWidth: widget.containerWidth,

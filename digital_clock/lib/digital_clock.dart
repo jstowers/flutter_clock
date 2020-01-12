@@ -162,17 +162,17 @@ class _DigitalClockState extends State<DigitalClock> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              color: Colors.orange,
+              color: Color(0xFF4285F4),
               height: boxHeight,
               width: boxWidth,
               child: Stack(
                 children: <Widget>[
-                  if (_currentSecond > 0)
+                  if (_currentSecond >= 45 && _currentSecond < 60)
                     SecondsBarAnimator(
                       containerWidth: boxWidth,
                       containerHeight: boxHeight,
                       currentSecond: _currentSecond,
-                      finalSecond: 15,
+                      finalSecond: 60,
                       isInitialLoad: isInitialLoad,
                     ),
                   Center(
@@ -191,12 +191,12 @@ class _DigitalClockState extends State<DigitalClock> {
               width: boxWidth,
               child: Stack(
                 children: <Widget>[
-                  if (_currentSecond >= 15)
+                  if (_currentSecond >= 0 && _currentSecond < 15)
                     SecondsBarAnimator(
                       containerWidth: boxWidth,
                       containerHeight: boxHeight,
                       currentSecond: _currentSecond,
-                      finalSecond: 30,
+                      finalSecond: 15,
                       isInitialLoad: isInitialLoad,
                     ),
                   Center(
@@ -214,17 +214,17 @@ class _DigitalClockState extends State<DigitalClock> {
         Row(
           children: <Widget>[
             Container(
-              color: Colors.lightBlue,
+              color: Color(0xFFf4c20d),
               height: boxHeight,
               width: boxWidth,
               child: Stack(
                 children: <Widget>[
-                  if (_currentSecond >= 45)
+                  if (_currentSecond >= 30 && _currentSecond < 45)
                     SecondsBarAnimator(
                       containerWidth: boxWidth,
                       containerHeight: boxHeight,
                       currentSecond: _currentSecond,
-                      finalSecond: 59,
+                      finalSecond: 45,
                       isInitialLoad: isInitialLoad,
                     ),
                   Center(
@@ -243,12 +243,12 @@ class _DigitalClockState extends State<DigitalClock> {
               width: boxWidth,
               child: Stack(
                 children: <Widget>[
-                  if (_currentSecond >= 30)
+                  if (_currentSecond >= 15 && _currentSecond < 30)
                     SecondsBarAnimator(
                       containerWidth: boxWidth,
                       containerHeight: boxHeight,
                       currentSecond: _currentSecond,
-                      finalSecond: 45,
+                      finalSecond: 30,
                       isInitialLoad: isInitialLoad,
                     ),
                   Center(

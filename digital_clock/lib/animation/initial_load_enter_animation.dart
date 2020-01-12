@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// TODO: pass initial and final animation colors as properties
 class InitialLoadEnterAnimation {
   final AnimationController controller;
   final containerWidth;

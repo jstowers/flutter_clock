@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SecondsBar extends StatelessWidget {
-  final barWidth;
-  final barHeight;
-  final color;
+  final double barWidth;
+  final double barHeight;
+  final Color color;
 
   SecondsBar({
     @required this.barWidth,
