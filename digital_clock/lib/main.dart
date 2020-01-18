@@ -4,11 +4,15 @@
 
 import 'dart:io';
 
-import 'package:flutter_clock_helper/customizer.dart';
-import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:flutter_clock_helper/customizer.dart';
+import 'package:flutter_clock_helper/model.dart';
+
+import 'providers/screen_settings.dart';
+import 'providers/time_state.dart';
 import 'digital_clock.dart';
 
 void main() {
@@ -30,5 +34,27 @@ void main() {
   //
   // Your job is to edit [DigitalClock], or replace it with your
   // own clock widget. (Look in digital_clock.dart for more details!)
-  runApp(ClockCustomizer((ClockModel model) => DigitalClock(model)));
+
+  // Original Code - No ChangeNotifierProviders
+  // runApp(ClockCustomizer((ClockModel model) => DigitalClock(model)));
+
+  runApp(ClockCustomizer(
+    (ClockModel model) => MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ScreenSettings>(
+          key: Key('screenSettings_change_notifier_provider'),
+          create: (_) => ScreenSettings(),
+        ),
+        ChangeNotifierProvider<TimeState>(
+          key: Key('timeState_change_notifier_provider'),
+          create: (_) => TimeState(),
+        ),
+        ChangeNotifierProvider.value(
+          key: Key('clockModel_change_notifier_provider'),
+          value: model,
+        )
+      ],
+      child: DigitalClock(),
+    ),
+  ));
 }

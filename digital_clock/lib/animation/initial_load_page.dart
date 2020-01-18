@@ -1,7 +1,9 @@
+import 'package:digital_clock/providers/screen_settings.dart';
 import 'package:flutter/material.dart';
 
 import 'package:digital_clock/animation/elapsed_seconds_container.dart';
 import 'package:digital_clock/animation/initial_load_enter_animation.dart';
+import 'package:provider/provider.dart';
 
 class InitialLoadPage extends StatefulWidget {
   final InitialLoadEnterAnimation animation;
@@ -30,8 +32,9 @@ class InitialLoadPage extends StatefulWidget {
 
 class _InitialLoadPageState extends State<InitialLoadPage> {
   Widget _buildAnimation(BuildContext context, Widget child) {
+    final screenSettings = Provider.of<ScreenSettings>(context);
     final animation = widget.animation;
-    final containerHeight = widget.containerHeight;
+    final containerHeight = screenSettings.containerHeight;
 
     return Stack(
       children: <Widget>[

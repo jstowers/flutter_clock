@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:digital_clock/animation/seconds_detail_enter_animation.dart';
-import 'package:digital_clock/components/seconds_bar.dart';
+import 'seconds_detail_enter_animation.dart';
+import '../components/seconds_bar.dart';
+import '../providers/time_state.dart';
 
 class SecondsDetailPage extends StatefulWidget {
   final SecondsDetailEnterAnimation animation;
@@ -26,6 +28,8 @@ class SecondsDetailPage extends StatefulWidget {
 class _SecondsDetailPageState extends State<SecondsDetailPage> {
   Widget _buildAnimation(BuildContext context, Widget child) {
     final animation = widget.animation;
+
+    final timeState = Provider.of<TimeState>(context);
 
     final containerWidth = widget.containerWidth;
     final containerHeight = widget.containerHeight;
@@ -169,6 +173,13 @@ class _SecondsDetailPageState extends State<SecondsDetailPage> {
           ),
           top: animation.second15.value,
           left: 14 / 15 * widget.containerWidth,
+        ),
+        Center(
+          child: DefaultTextStyle(
+            style: TextStyle(color: Colors.red),
+            child: Text(timeState.second.toString()),
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );

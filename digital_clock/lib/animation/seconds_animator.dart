@@ -12,6 +12,7 @@ class SecondsBarAnimator extends StatefulWidget {
   final finalSecond;
   final animationDuration;
   final isInitialLoad;
+  final int displayQuadrant;
 
   SecondsBarAnimator({
     @required this.containerWidth,
@@ -19,6 +20,7 @@ class SecondsBarAnimator extends StatefulWidget {
     this.currentSecond,
     this.finalSecond,
     this.isInitialLoad,
+    this.displayQuadrant,
   }) : animationDuration = finalSecond - currentSecond;
 
   @override
@@ -47,8 +49,6 @@ class _SecondsBarAnimator extends State<SecondsBarAnimator>
 
   @override
   Widget build(BuildContext context) {
-    final currentSecond = widget.currentSecond;
-
     if (widget.isInitialLoad) {
       return InitialLoadPage(
         controller: _controller,
@@ -57,24 +57,32 @@ class _SecondsBarAnimator extends State<SecondsBarAnimator>
         currentSecond: widget.currentSecond,
         finalSecond: widget.finalSecond,
       );
-    } else if (currentSecond >= 15 && currentSecond < 30) {
-      return SecondsHorizontalDetailPage(
-        controller: _controller,
-        containerWidth: widget.containerWidth,
-        containerHeight: widget.containerHeight,
-      );
-    } else if (currentSecond >= 30 && currentSecond < 45) {
-      return SecondsVerticalTwoBarsDetailPage(
-        controller: _controller,
-        containerWidth: widget.containerWidth,
-        containerHeight: widget.containerHeight,
-      );
     } else {
-      return SecondsDetailPage(
-        controller: _controller,
-        containerWidth: widget.containerWidth,
-        containerHeight: widget.containerHeight,
-      );
+      if (widget.displayQuadrant == 1) {
+        return SecondsDetailPage(
+          controller: _controller,
+          containerWidth: widget.containerWidth,
+          containerHeight: widget.containerHeight,
+        );
+      } else if (widget.displayQuadrant == 2) {
+        return SecondsHorizontalDetailPage(
+          controller: _controller,
+          containerWidth: widget.containerWidth,
+          containerHeight: widget.containerHeight,
+        );
+      } else if (widget.displayQuadrant == 3) {
+        return SecondsVerticalTwoBarsDetailPage(
+          controller: _controller,
+          containerWidth: widget.containerWidth,
+          containerHeight: widget.containerHeight,
+        );
+      } else {
+        return SecondsDetailPage(
+          controller: _controller,
+          containerWidth: widget.containerWidth,
+          containerHeight: widget.containerHeight,
+        );
+      }
     }
   }
 }
