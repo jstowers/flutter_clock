@@ -45,13 +45,15 @@ void main() {
           key: Key('screenSettings_change_notifier_provider'),
           create: (_) => ScreenSettings(),
         ),
-        ChangeNotifierProvider<TimeState>(
-          key: Key('timeState_change_notifier_provider'),
-          create: (_) => TimeState(),
-        ),
         ChangeNotifierProvider.value(
           key: Key('clockModel_change_notifier_provider'),
           value: model,
+        ),
+        ChangeNotifierProxyProvider<ClockModel, TimeState>(
+          key: Key('timeState_change_notifier_proxy_provider'),
+          create: (_) => TimeState(),
+          update: (_, clockModel, timeState) => timeState..update(clockModel),
+          //child: DigitalClock(),
         )
       ],
       child: DigitalClock(),

@@ -70,22 +70,12 @@ class _SecondsAnimator extends State<SecondsAnimator>
     final timeState = Provider.of<TimeState>(context);
 
     if (timeState.isInitialLoad) {
-      int finalSecond = 0;
-      if (timeState.second > 0 && timeState.second <= 15) {
-        finalSecond = 15;
-      } else if (timeState.second > 15 && timeState.second <= 30) {
-        finalSecond = 30;
-      } else if (timeState.second > 30 && timeState.second <= 45) {
-        finalSecond = 45;
-      } else
-        finalSecond = 0;
-
       return InitialLoadPage(
         controller: _controller,
         containerWidth: screenSettings.containerWidth,
         containerHeight: screenSettings.containerHeight,
         currentSecond: timeState.second,
-        finalSecond: finalSecond,
+        finalSecond: timeState.lastSecondInitialLoad,
       );
     } else {
       return SecondsDetailPage(
