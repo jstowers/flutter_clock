@@ -12,7 +12,27 @@ class TimeState extends ChangeNotifier {
 
   void update(ClockModel clockModel) {
     _is24HourFormat = clockModel.is24HourFormat;
+    formatHour();
     notifyListeners();
+  }
+
+  void formatHour() {
+    if (!_is24HourFormat) {
+      final formattedHour = DateFormat('h').format(_dateTime);
+      final hourLength = formattedHour.length;
+
+      if (hourLength == 2) {
+        _hourDigitOne = formattedHour.substring(0, 1);
+        _hourDigitTwo = formattedHour.substring(1, 2);
+      } else {
+        _hourDigitOne = '';
+        _hourDigitTwo = formattedHour;
+      }
+    } else {
+      // 24-hour format
+      _hourDigitOne = _hour.toString().substring(0, 1);
+      _hourDigitTwo = _hour.toString().substring(1, 2);
+    }
   }
 
   get is24HourFormat => _is24HourFormat;
@@ -52,11 +72,7 @@ class TimeState extends ChangeNotifier {
 
     if (_hour != _dateTime.hour) {
       _hour = _dateTime.hour;
-      final formattedHour =
-          DateFormat(_is24HourFormat ? 'HH' : 'h').format(_dateTime);
-      print('formattedHour = $formattedHour');
-      _hourDigitOne = formattedHour.substring(0, 1);
-      _hourDigitTwo = formattedHour.substring(1, 2);
+      formatHour();
     }
 
     if (_minute != _dateTime.minute) {
