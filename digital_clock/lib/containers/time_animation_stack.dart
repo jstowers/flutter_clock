@@ -1,10 +1,8 @@
-import 'package:digital_clock/animation/fifteen_seconds_animation_stack.dart';
-import 'package:digital_clock/animation/initial_load_animation_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../animation/seconds_animator.dart';
-import '../components/time_digit_container.dart';
+import '../animation/fifteen_seconds_animation_stack.dart';
+import '../animation/initialLoad/initial_load_animation_stack.dart';
 import '../providers/time_state.dart';
 
 class TimeAnimationStack extends StatelessWidget {
@@ -34,12 +32,12 @@ class TimeAnimationStack extends StatelessWidget {
         break;
       case (3):
         timeDigit = timeState.minuteDigitOne;
-        secondInitial = 31;
+        secondInitial = 30;
         secondFinal = 45;
         break;
       case (4):
         timeDigit = timeState.hourDigitOne;
-        secondInitial = 46;
+        secondInitial = 45;
         secondFinal = 60;
         break;
       default:

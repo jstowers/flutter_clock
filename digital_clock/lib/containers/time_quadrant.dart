@@ -1,8 +1,7 @@
-import 'package:digital_clock/providers/time_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/time_animation_stack.dart';
+import '../containers/time_animation_stack.dart';
 import '../providers/screen_settings.dart';
 
 class TimeQuadrant extends StatelessWidget {

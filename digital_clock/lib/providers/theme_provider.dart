@@ -19,7 +19,7 @@ enum _LenovoColors {
   white,
 }
 
-class Theme with ChangeNotifier {
+class ThemeStyles with ChangeNotifier {
   static final _lightTheme = {
     _Element.background: Color(0xFF81B3FE),
     _Element.text: Colors.white,
@@ -33,10 +33,10 @@ class Theme with ChangeNotifier {
   };
 
   static final _googleColors = {
-    _GoogleColors.red: Colors.red,
-    _GoogleColors.green: Colors.green,
-    _GoogleColors.blue: Colors.blue,
-    _GoogleColors.yellow: Colors.yellow,
+    _GoogleColors.red: Color(0xFFd62d20),
+    _GoogleColors.green: Color(0xFF008744),
+    _GoogleColors.blue: Color(0xFF0057e7),
+    _GoogleColors.yellow: Color(0xFFffa700),
   };
 
   static final _lenovoColors = {

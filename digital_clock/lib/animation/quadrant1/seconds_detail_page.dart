@@ -1,54 +1,45 @@
 import 'package:flutter/material.dart';
 
-import 'package:digital_clock/animation/seconds_horizontal_detail_enter_animation.dart';
-import 'package:digital_clock/components/seconds_bar.dart';
+import '../../animation/widgets/seconds_bar.dart';
+import 'seconds_detail_enter_animation.dart';
 
-class SecondsHorizontalDetailPage extends StatefulWidget {
-  final SecondsHorizontalDetailEnterAnimation animation;
+class SecondsDetailPage extends StatefulWidget {
+  final SecondsDetailEnterAnimation animation;
   final AnimationController controller;
   final containerWidth;
   final containerHeight;
 
-  SecondsHorizontalDetailPage({
+  SecondsDetailPage({
     @required this.controller,
     @required this.containerWidth,
     @required this.containerHeight,
-  }) : animation = SecondsHorizontalDetailEnterAnimation(
+  }) : animation = SecondsDetailEnterAnimation(
           controller: controller,
           containerWidth: containerWidth,
+          containerHeight: containerHeight,
         );
 
   @override
-  _SecondsHorizontalDetailPage createState() => _SecondsHorizontalDetailPage();
+  _SecondsDetailPageState createState() => _SecondsDetailPageState();
 }
 
-class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
+class _SecondsDetailPageState extends State<SecondsDetailPage> {
   Widget _buildAnimation(BuildContext context, Widget child) {
     final animation = widget.animation;
 
-    final containerWidth = widget.containerWidth;
-    final containerHeight = widget.containerHeight;
-
-    final barWidth = containerWidth;
-    final barHeight = 1 / 15 * containerHeight;
+    final barWidth = 1 / 15 * widget.containerWidth;
+    final barHeight = widget.containerHeight;
 
     return Stack(
       children: <Widget>[
         Positioned(
           child: SecondsBar(
-              barWidth: barWidth,
-              barHeight: barHeight,
-              color: animation.colorChange.value),
-          top: 0.0,
-          left: animation.second1.value,
-        ),
-        Positioned(
-          child: SecondsBar(
-              barWidth: barWidth,
-              barHeight: barHeight,
-              color: animation.colorChange.value),
-          top: 1 / 15 * containerHeight,
-          left: animation.second2.value,
+            barWidth: barWidth,
+            barHeight: barHeight,
+            color: animation.colorChange.value,
+          ),
+          top: animation.second1.value,
+          left: 0.0,
         ),
         Positioned(
           child: SecondsBar(
@@ -56,8 +47,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 2 / 15 * containerHeight,
-          left: animation.second3.value,
+          top: animation.second2.value,
+          left: 1 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -65,8 +56,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 3 / 15 * containerHeight,
-          left: animation.second4.value,
+          top: animation.second3.value,
+          left: 2 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -74,8 +65,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 4 / 15 * containerHeight,
-          left: animation.second5.value,
+          top: animation.second4.value,
+          left: 3 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -83,8 +74,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 5 / 15 * containerHeight,
-          left: animation.second6.value,
+          top: animation.second5.value,
+          left: 4 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -92,8 +83,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 6 / 15 * containerHeight,
-          left: animation.second7.value,
+          top: animation.second6.value,
+          left: 5 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -101,8 +92,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 7 / 15 * containerHeight,
-          left: animation.second8.value,
+          top: animation.second7.value,
+          left: 6 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -110,8 +101,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 8 / 15 * containerHeight,
-          left: animation.second9.value,
+          top: animation.second8.value,
+          left: 7 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -119,8 +110,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 9 / 15 * containerHeight,
-          left: animation.second10.value,
+          top: animation.second9.value,
+          left: 8 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -128,8 +119,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 10 / 15 * containerHeight,
-          left: animation.second11.value,
+          top: animation.second10.value,
+          left: 9 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -137,8 +128,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 11 / 15 * containerHeight,
-          left: animation.second12.value,
+          top: animation.second11.value,
+          left: 10 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -146,8 +137,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 12 / 15 * containerHeight,
-          left: animation.second13.value,
+          top: animation.second12.value,
+          left: 11 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -155,8 +146,8 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 13 / 15 * containerHeight,
-          left: animation.second14.value,
+          top: animation.second13.value,
+          left: 12 / 15 * widget.containerWidth,
         ),
         Positioned(
           child: SecondsBar(
@@ -164,8 +155,17 @@ class _SecondsHorizontalDetailPage extends State<SecondsHorizontalDetailPage> {
             barHeight: barHeight,
             color: animation.colorChange.value,
           ),
-          top: 14 / 15 * containerHeight,
-          left: animation.second15.value,
+          top: animation.second14.value,
+          left: 13 / 15 * widget.containerWidth,
+        ),
+        Positioned(
+          child: SecondsBar(
+            barWidth: barWidth,
+            barHeight: barHeight,
+            color: animation.colorChange.value,
+          ),
+          top: animation.second15.value,
+          left: 14 / 15 * widget.containerWidth,
         ),
       ],
     );

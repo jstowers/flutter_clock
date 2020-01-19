@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../animation/initial_load_page.dart';
-import '../animation/seconds_detail_page.dart';
-import '../animation/seconds_horizontal_detail_page.dart';
-import '../animation/seconds_vertical_two_bars_detail_page.dart';
+import '../animation/initialLoad/initial_load_page.dart';
+import '../animation/quadrant1/seconds_detail_page.dart';
+import '../animation/quadrant2/seconds_horizontal_detail_page.dart';
+import '../animation/quadrant3/seconds_vertical_two_bars_detail_page.dart';
+import '../animation/quadrant4/quadrant4_animation_detail.dart';
 import '../providers/screen_settings.dart';
 import '../providers/time_state.dart';
 
@@ -89,13 +90,14 @@ class _SecondsAnimator extends State<SecondsAnimator>
           containerWidth: quadrantWidth,
           containerHeight: quadrantHeight,
         );
-      } else {
-        return SecondsDetailPage(
+      } else if (widget.quadrant == 4) {
+        return QuadrantFourAnimationDetail(
           controller: _controller,
           containerWidth: quadrantWidth,
           containerHeight: quadrantHeight,
         );
-      }
+      } else
+        return SizedBox.shrink();
     }
   } // end build
 }

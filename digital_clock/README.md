@@ -12,9 +12,9 @@ Your working codebase, with a pre-built Clock Model and Digital Clock widget, wa
 
 My name is Joe Stowers and I am a full-stack mobile developer at [Resideo](https://www.resideo.com/us/en) in Austin, Texas.  
 
-Resideo is building the next-gen whole-home ecosystem for IoT products, including thermostats, water leak detectors, and air quality monitors.
+Resideo is building the next-gen whole-home ecosystem of IoT products, including thermostats, water leak detectors, and air quality monitors.
 
-Our team uses Dart and Flutter to create an engaging, delightful app experience.  This Clock Design contest allowed me to sharpen my Dart/Flutter skillset and exercise my design muscles for fun and pleasure!
+Our team uses Dart and Flutter to create an engaging, delightful mobile app experience.  This Clock Design contest allowed me to sharpen my Dart/Flutter skillset, especially with Provider and Automations, and exercise my design muscles for fun and pleasure!
 
 
 ## Key Learnings
@@ -25,7 +25,7 @@ Our team uses Dart and Flutter to create an engaging, delightful app experience.
 
 • After refactoring, the codebase is much cleaner and I am amazed at how little code is needed to manage a Timer using the `ChangeNotifierProvider` versus the internal setState methods of the original DigitalClock class.
 
-• In the time_state model, an error appears within the Provider package when `notifyListeners()` is called after each second.  I researched and debugged this issue but could not eliminate this error.  Importantly, this error does not affect the clock's accuracy.  I have seen other people report issues where `notifyListeners` calls `setState() or markNeedsBuild() during a build`.  Given the complexity of handling frequent state changes with timers, this error is less severe than the breaking changes I saw when mixing internal Widget state with a ChangeNotifierProvider.
+• In my time_state model, an error appears within the Provider package when `notifyListeners()` is called after the first few seconds.  The model stabilizes and this errors disappears.  I researched and debugged this issue but could not eliminate this error on app startup.  Importantly, this error does not affect the clock's accuracy.  I have seen other people report issues where `notifyListeners` calls `setState() or markNeedsBuild() during a build`.  Given the complexity of handling frequent state changes with timers, this issue is less severe than the breaking changes I saw when mixing internal Widget state with a ChangeNotifierProvider.
 
 
 ## Next Steps
@@ -42,6 +42,7 @@ Our team uses Dart and Flutter to create an engaging, delightful app experience.
 Thank you for your consideration of my Clock Design.  Should you have any questions, please let me know.
 
 Joe Stowers
+Monday, January 20, 2020
 
 greenchiletexan@gmail.com
 

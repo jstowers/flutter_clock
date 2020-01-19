@@ -4,6 +4,7 @@
 
 import 'dart:io';
 
+import 'package:digital_clock/providers/theme_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,7 @@ void main() {
           create: (_) => TimeState(),
           update: (_, clockModel, timeState) => timeState..update(clockModel),
           //child: DigitalClock(),
-        )
+        ),
       ],
       child: DigitalClock(),
     ),

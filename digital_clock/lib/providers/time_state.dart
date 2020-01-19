@@ -70,15 +70,17 @@ class TimeState extends ChangeNotifier {
       _second = _dateTime.second;
       print('-------------------------');
       print('second = $second');
-      if (_isFirstSecond) {
-        _firstSecond = _second;
-        print('_firstSecond = $_firstSecond');
-        _setInitialLoadParameters();
-        _isFirstSecond = false;
-      }
+
       if (_isInitialLoad) {
         _checkInitialLoadComplete();
       }
+
+      if (_isFirstSecond && _isInitialLoad) {
+        _firstSecond = _second;
+        _setInitialLoadParameters();
+        _isFirstSecond = false;
+      }
+
       notifyListeners();
     }
 
@@ -112,7 +114,7 @@ class TimeState extends ChangeNotifier {
       _lastSecondInitialLoad = 45;
       _initialBarIndex = _firstSecond - (_lastSecondInitialLoad - 15);
     } else {
-      _lastSecondInitialLoad = 59;
+      _lastSecondInitialLoad = 60;
       _initialBarIndex = _firstSecond - 45;
     }
   }

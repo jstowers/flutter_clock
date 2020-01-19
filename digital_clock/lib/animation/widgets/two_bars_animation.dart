@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:digital_clock/animation/two_bars.dart';
-import 'package:digital_clock/components/seconds_bar.dart';
+import 'two_bars.dart';
+import 'seconds_bar.dart';
 
 class TwoBarsAnimation extends StatelessWidget {
   final List<TwoBars> animationList;
@@ -16,8 +16,8 @@ class TwoBarsAnimation extends StatelessWidget {
 
   Widget _buildAnimationList() {
     final barWidth = 1 / 15 * containerWidth;
-    final topColor = Colors.purple;
-    final bottomColor = Colors.greenAccent;
+    final topColor = Colors.cyan;
+    final bottomColor = Colors.red;
 
     final List<Widget> list = [];
 

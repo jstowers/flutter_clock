@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'components/time_container.dart';
+import 'containers/time_container.dart';
 import 'providers/time_state.dart';
 
 class DigitalClock extends StatelessWidget {

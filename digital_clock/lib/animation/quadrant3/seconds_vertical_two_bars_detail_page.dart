@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:digital_clock/animation/seconds_vertical_two_bars_enter_animation.dart';
-import 'package:digital_clock/animation/two_bars.dart';
-import 'package:digital_clock/animation/two_bars_animation.dart';
+import '../widgets/two_bars.dart';
+import '../widgets/two_bars_animation.dart';
+import 'seconds_vertical_two_bars_enter_animation.dart';
 
 class SecondsVerticalTwoBarsDetailPage extends StatefulWidget {
   final SecondsVerticalTwoBarsEnterAnimation animation;

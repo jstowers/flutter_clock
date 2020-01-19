@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../animation/seconds_animator.dart';
-import '../components/time_digit_container.dart';
+import '../seconds_animator.dart';
+import '../../containers/time_digit_container.dart';
 
 class InitialLoadAnimationStack extends StatelessWidget {
   final int quadrant;

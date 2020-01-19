@@ -1,9 +1,9 @@
-import 'package:digital_clock/providers/screen_settings.dart';
 import 'package:flutter/material.dart';
-
-import 'package:digital_clock/animation/elapsed_seconds_container.dart';
-import 'package:digital_clock/animation/initial_load_enter_animation.dart';
 import 'package:provider/provider.dart';
+
+import '../../providers/screen_settings.dart';
+import '../widgets/elapsed_seconds_container.dart';
+import 'initial_load_enter_animation.dart';
 
 class InitialLoadPage extends StatefulWidget {
   final InitialLoadEnterAnimation animation;

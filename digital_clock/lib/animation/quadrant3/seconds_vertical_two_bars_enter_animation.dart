@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:digital_clock/animation/bar_animation.dart';
+import '../widgets/bar_animation.dart';
 
 class SecondsVerticalTwoBarsEnterAnimation {
   final AnimationController controller;
@@ -250,10 +250,4 @@ class SecondsVerticalTwoBarsEnterAnimation {
   final Animation<num> second14bottom;
   final Animation<num> second15top;
   final Animation<num> second15bottom;
-
-  // Map<int, Animation<num> mapOfSecondAnimations()
-
-  // double getAnimationValue(Animation<num> animation) {
-  //   return animation.value;
-  // }
 }
