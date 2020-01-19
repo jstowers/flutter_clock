@@ -11,12 +11,12 @@ class TimeDigitContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSettings = Provider.of<ScreenSettings>(context, listen: false);
-    final boxHeight = screenSettings.boxHeight;
+    final fontSize = screenSettings.fontSize;
 
     return Center(
       key: Key('time_digit_container_quadrant_$quadrant'),
       child: DefaultTextStyle(
-        style: TextStyle(fontSize: 0.8 * boxHeight),
+        style: TextStyle(fontSize: fontSize),
         child: Text(timeDigit),
         textAlign: TextAlign.center,
       ),

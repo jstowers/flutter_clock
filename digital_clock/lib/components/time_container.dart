@@ -7,7 +7,7 @@ import 'time_quadrant.dart';
 class TimeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final screenSettings = Provider.of<ScreenSettings>(context, listen: false);
+    final screenSettings = Provider.of<ScreenSettings>(context);
 
     if (screenSettings.containerHeight == 0.0 &&
         screenSettings.containerWidth == 0.0) {
@@ -33,7 +33,7 @@ class TimeContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TimeQuadrant(quadrantId: 3, backgroundColor: Colors.blue),
-              TimeQuadrant(quadrantId: 2, backgroundColor: Colors.yellow),
+              TimeQuadrant(quadrantId: 2, backgroundColor: Colors.orange),
             ],
           )
         ],

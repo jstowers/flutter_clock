@@ -115,8 +115,8 @@ class SecondsHorizontalDetailEnterAnimation {
           timeFinal: 15 / 15,
         ).tween,
         colorChange = ColorTween(
-          begin: Colors.amber,
-          end: Colors.indigo,
+          begin: Colors.red,
+          end: Colors.blue,
         ).animate(
           CurvedAnimation(
             parent: controller,

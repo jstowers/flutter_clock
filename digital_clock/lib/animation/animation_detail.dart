@@ -1,5 +1,5 @@
-import 'package:digital_clock/animation/initial_load_page.dart';
-import 'package:flutter/material.dart';
+// import 'package:digital_clock/animation/initial_load_page.dart';
+// import 'package:flutter/material.dart';
 
 // class AnimationDetail {
 //   final AnimationController controller;

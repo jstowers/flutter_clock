@@ -41,9 +41,6 @@ class TimeState extends ChangeNotifier {
 
   get isInitialLoad => _isInitialLoad;
   bool _isInitialLoad = true;
-  _setIsInitialLoad(bool value) {
-    _isInitialLoad = value;
-  }
 
   bool _isFirstSecond = true;
 
@@ -70,11 +67,15 @@ class TimeState extends ChangeNotifier {
 
     if (_second != _dateTime.second) {
       _second = _dateTime.second;
+      print('-------------------------');
+      print('second = $second');
       if (_isFirstSecond) {
         _firstSecond = _second;
-        print('first second = $_firstSecond');
-        _setLastSecondInitialLoad();
+        _setInitialLoadParameters();
         _isFirstSecond = false;
+      }
+      if (_isInitialLoad) {
+        _checkInitialLoadComplete();
       }
       notifyListeners();
     }
@@ -82,29 +83,36 @@ class TimeState extends ChangeNotifier {
     _timer = Timer(
         Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
         updateTime);
-    _checkInitialLoadComplete();
   }
 
   void _checkInitialLoadComplete() {
     print('INSIDE _checkInitialLoadComplete');
-    print('second = $_second');
     if (_second == 0 || _second == 15 || _second == 30 || _second == 45) {
-      _setIsInitialLoad(false);
+      _isInitialLoad = false;
+      print('isInitialLoad = $_isInitialLoad');
     }
   }
 
   get lastSecondInitialLoad => _lastSecondInitialLoad;
   num _lastSecondInitialLoad = 0;
 
-  void _setLastSecondInitialLoad() {
+  get initialBarIndex => _initialBarIndex;
+  int _initialBarIndex = 0;
+
+  void _setInitialLoadParameters() {
     if (_firstSecond > 0 && _firstSecond <= 15) {
       _lastSecondInitialLoad = 15;
+      _initialBarIndex = _firstSecond;
     } else if (_firstSecond > 15 && _firstSecond <= 30) {
       _lastSecondInitialLoad = 30;
-    } else if (firstSecond > 30 && firstSecond <= 45) {
+      _initialBarIndex = _firstSecond - (_lastSecondInitialLoad - 15);
+    } else if (_firstSecond > 30 && _firstSecond <= 45) {
       _lastSecondInitialLoad = 45;
-    } else
-      _lastSecondInitialLoad = 0;
+      _initialBarIndex = _firstSecond - (_lastSecondInitialLoad - 15);
+    } else {
+      _lastSecondInitialLoad = 59;
+      _initialBarIndex = _firstSecond - 45;
+    }
   }
 
   void dispose() {

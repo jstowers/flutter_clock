@@ -1,41 +1,47 @@
-import 'package:digital_clock/animation/initial_load_page.dart';
-import 'package:digital_clock/animation/seconds_horizontal_detail_page.dart';
-import 'package:digital_clock/animation/seconds_vertical_two_bars_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:digital_clock/animation/seconds_detail_page.dart';
+import '../animation/initial_load_page.dart';
+import '../animation/seconds_detail_page.dart';
+import '../animation/seconds_horizontal_detail_page.dart';
+import '../animation/seconds_vertical_two_bars_detail_page.dart';
+import '../providers/screen_settings.dart';
+import '../providers/time_state.dart';
 
-class SecondsBarAnimator extends StatefulWidget {
-  final containerWidth;
-  final containerHeight;
-  final currentSecond;
-  final finalSecond;
-  final animationDuration;
-  final isInitialLoad;
-  final int displayQuadrant;
+class SecondsAnimator extends StatefulWidget {
+  final int quadrant;
+  final num second;
+  bool isInitialLoad;
+  num firstSecond;
+  num lastSecondInitialLoad;
+  int animationDuration;
 
-  SecondsBarAnimator({
-    @required this.containerWidth,
-    @required this.containerHeight,
-    this.currentSecond,
-    this.finalSecond,
+  SecondsAnimator({
+    @required this.quadrant,
+    @required this.second,
+  }) : animationDuration = 15;
+
+  SecondsAnimator.initialLoad(
+    this.quadrant,
+    this.second,
     this.isInitialLoad,
-    this.displayQuadrant,
-  }) : animationDuration = finalSecond - currentSecond;
+    this.firstSecond,
+    this.lastSecondInitialLoad,
+  ) : animationDuration = lastSecondInitialLoad - firstSecond;
 
   @override
-  _SecondsBarAnimator createState() => _SecondsBarAnimator();
+  _SecondsAnimator createState() => _SecondsAnimator();
 }
 
-class _SecondsBarAnimator extends State<SecondsBarAnimator>
-    with SingleTickerProviderStateMixin {
+class _SecondsAnimator extends State<SecondsAnimator>
+    with TickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: widget.animationDuration * 1000),
+      duration: Duration(seconds: widget.animationDuration),
       vsync: this,
     );
     _controller.forward();
@@ -49,40 +55,46 @@ class _SecondsBarAnimator extends State<SecondsBarAnimator>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isInitialLoad) {
+    final screenSettings = Provider.of<ScreenSettings>(context);
+    final quadrantWidth = screenSettings.quadrantWidth;
+    final quadrantHeight = screenSettings.quadrantHeight;
+
+    final timeState = Provider.of<TimeState>(context);
+
+    // initial load
+    if (timeState.isInitialLoad) {
       return InitialLoadPage(
         controller: _controller,
-        containerWidth: widget.containerWidth,
-        containerHeight: widget.containerHeight,
-        currentSecond: widget.currentSecond,
-        finalSecond: widget.finalSecond,
+        containerWidth: quadrantWidth,
+        containerHeight: quadrantHeight,
+        barIndex: timeState.initialBarIndex,
       );
     } else {
-      if (widget.displayQuadrant == 1) {
+      if (widget.quadrant == 1) {
         return SecondsDetailPage(
           controller: _controller,
-          containerWidth: widget.containerWidth,
-          containerHeight: widget.containerHeight,
+          containerWidth: quadrantWidth,
+          containerHeight: quadrantHeight,
         );
-      } else if (widget.displayQuadrant == 2) {
+      } else if (widget.quadrant == 2) {
         return SecondsHorizontalDetailPage(
           controller: _controller,
-          containerWidth: widget.containerWidth,
-          containerHeight: widget.containerHeight,
+          containerWidth: quadrantWidth,
+          containerHeight: quadrantHeight,
         );
-      } else if (widget.displayQuadrant == 3) {
+      } else if (widget.quadrant == 3) {
         return SecondsVerticalTwoBarsDetailPage(
           controller: _controller,
-          containerWidth: widget.containerWidth,
-          containerHeight: widget.containerHeight,
+          containerWidth: quadrantWidth,
+          containerHeight: quadrantHeight,
         );
       } else {
         return SecondsDetailPage(
           controller: _controller,
-          containerWidth: widget.containerWidth,
-          containerHeight: widget.containerHeight,
+          containerWidth: quadrantWidth,
+          containerHeight: quadrantHeight,
         );
       }
     }
-  }
+  } // end build
 }

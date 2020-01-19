@@ -27,7 +27,7 @@ class ScreenSettings with ChangeNotifier {
     }
   }
 
-  get containerHeight => _containerHeight;
+  double get containerHeight => _containerHeight;
   double _containerHeight = 0.0;
   set containerHeight(double containerHeight) {
     if (_containerHeight != containerHeight) {
@@ -35,11 +35,11 @@ class ScreenSettings with ChangeNotifier {
     }
   }
 
-  get boxWidth => containerWidth / 2;
+  get quadrantWidth => _containerWidth / 2;
 
-  get boxHeight => containerHeight / 2;
+  get quadrantHeight => _containerHeight / 2;
 
-  get fontSize => 4 / 5 * boxHeight;
+  get fontSize => 4 / 5 * quadrantHeight;
 
   get fontOffset => -fontSize / 7;
 
@@ -52,16 +52,16 @@ class ScreenSettings with ChangeNotifier {
     }
   }
 
-  get colorTheme => _isLightTheme ? _lightTheme : _darkTheme;
-  Map<_Element, Color> _colorTheme = _lightTheme;
-  set colorTheme(Brightness brightness) {
-    if (brightness == Brightness.light) {
-      _colorTheme = _lightTheme;
-    } else {
-      _colorTheme = _darkTheme;
-    }
-    notifyListeners();
-  }
+  // get colorTheme => _isLightTheme ? _lightTheme : _darkTheme;
+  // Map<_Element, Color> _colorTheme = _lightTheme;
+  // set colorTheme(Brightness brightness) {
+  //   if (brightness == Brightness.light) {
+  //     _colorTheme = _lightTheme;
+  //   } else {
+  //     _colorTheme = _darkTheme;
+  //   }
+  //   notifyListeners();
+  // }
 
   // get defaultStyle => _defaultStyle;
   // TextStyle _defaultStyle = TextStyle(

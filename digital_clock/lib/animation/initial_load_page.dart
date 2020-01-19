@@ -10,20 +10,18 @@ class InitialLoadPage extends StatefulWidget {
   final AnimationController controller;
   final containerWidth;
   final containerHeight;
-  final currentSecond;
-  final finalSecond;
+  final int barIndex;
 
   InitialLoadPage({
     @required this.controller,
     @required this.containerWidth,
     @required this.containerHeight,
-    @required this.currentSecond,
-    @required this.finalSecond,
+    @required this.barIndex,
   }) : animation = InitialLoadEnterAnimation(
           controller: controller,
           containerWidth: containerWidth,
           containerHeight: containerHeight,
-          barIndex: currentSecond - (finalSecond - 15),
+          barIndex: barIndex,
         );
 
   @override
@@ -32,9 +30,9 @@ class InitialLoadPage extends StatefulWidget {
 
 class _InitialLoadPageState extends State<InitialLoadPage> {
   Widget _buildAnimation(BuildContext context, Widget child) {
-    final screenSettings = Provider.of<ScreenSettings>(context);
-    final animation = widget.animation;
+    final screenSettings = Provider.of<ScreenSettings>(context, listen: false);
     final containerHeight = screenSettings.containerHeight;
+    final animation = widget.animation;
 
     return Stack(
       children: <Widget>[

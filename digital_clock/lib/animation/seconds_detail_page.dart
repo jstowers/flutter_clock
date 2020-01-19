@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'seconds_detail_enter_animation.dart';
 import '../components/seconds_bar.dart';
-import '../providers/time_state.dart';
+import '../providers/screen_settings.dart';
 
 class SecondsDetailPage extends StatefulWidget {
   final SecondsDetailEnterAnimation animation;
@@ -29,13 +29,8 @@ class _SecondsDetailPageState extends State<SecondsDetailPage> {
   Widget _buildAnimation(BuildContext context, Widget child) {
     final animation = widget.animation;
 
-    final timeState = Provider.of<TimeState>(context);
-
-    final containerWidth = widget.containerWidth;
-    final containerHeight = widget.containerHeight;
-
-    final barWidth = 1 / 15 * containerWidth;
-    final barHeight = containerHeight;
+    final barWidth = 1 / 15 * widget.containerWidth;
+    final barHeight = widget.containerHeight;
 
     return Stack(
       children: <Widget>[
@@ -173,13 +168,6 @@ class _SecondsDetailPageState extends State<SecondsDetailPage> {
           ),
           top: animation.second15.value,
           left: 14 / 15 * widget.containerWidth,
-        ),
-        Center(
-          child: DefaultTextStyle(
-            style: TextStyle(color: Colors.red),
-            child: Text(timeState.second.toString()),
-            textAlign: TextAlign.center,
-          ),
         ),
       ],
     );

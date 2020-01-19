@@ -1,6 +1,4 @@
-import 'package:digital_clock/providers/screen_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ElapsedSecondsContainer extends StatelessWidget {
   final width;

@@ -1,3 +1,4 @@
+import 'package:digital_clock/providers/time_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,13 +13,13 @@ class TimeQuadrant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSettings = Provider.of<ScreenSettings>(context, listen: false);
+    final screenSettings = Provider.of<ScreenSettings>(context);
 
     return Container(
       key: Key('time_quadrant_container_$quadrantId'),
       color: backgroundColor,
-      height: screenSettings.boxHeight,
-      width: screenSettings.boxWidth,
+      height: screenSettings.quadrantHeight,
+      width: screenSettings.quadrantWidth,
       child: TimeAnimationStack(quadrantId: quadrantId),
     );
   }
