@@ -53,7 +53,8 @@ class TimeState extends ChangeNotifier {
     if (_hour != _dateTime.hour) {
       _hour = _dateTime.hour;
       final formattedHour =
-          DateFormat(_is24HourFormat ? 'HH' : 'hh').format(_dateTime);
+          DateFormat(_is24HourFormat ? 'HH' : 'h').format(_dateTime);
+      print('formattedHour = $formattedHour');
       _hourDigitOne = formattedHour.substring(0, 1);
       _hourDigitTwo = formattedHour.substring(1, 2);
     }
@@ -71,6 +72,7 @@ class TimeState extends ChangeNotifier {
       print('second = $second');
       if (_isFirstSecond) {
         _firstSecond = _second;
+        print('_firstSecond = $_firstSecond');
         _setInitialLoadParameters();
         _isFirstSecond = false;
       }

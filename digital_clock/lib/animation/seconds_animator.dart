@@ -34,12 +34,13 @@ class SecondsAnimator extends StatefulWidget {
 }
 
 class _SecondsAnimator extends State<SecondsAnimator>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
+    print('animationDuration = ${widget.animationDuration}');
     _controller = AnimationController(
       duration: Duration(seconds: widget.animationDuration),
       vsync: this,
