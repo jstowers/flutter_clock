@@ -21,7 +21,7 @@ Our team uses Dart and Flutter to create an engaging, delightful mobile app expe
 
 • I initially tried to build the app using the base configuration with the ClockModel passed into the DigitalClock class.  This worked intitially, but as my widget tree grew, it became increasingly more difficult to pass the necessary properties (time, container size, animation values, and styles) through class constructors.
 
-• Facing some difficult animation sequences, I decided to refactor the codebase and use the [`Provider`](https://pub.dev/packages/provider) pattern to manage the time state and screenSettings state.  With no previous experience using this pattern, the refactor was challenging and took several days.  The online tutorial [Simple App State Management](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple) provided an excellent resource for understanding and implementing the three key classes: [`ChangeNotifier`](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html), [`ChangeNotifierProvider`](https://pub.dev/documentation/provider/latest/provider/ChangeNotifierProvider-class.html), and [`Consumer`](https://pub.dev/documentation/provider/latest/provider/Consumer-class.html).  Thank you!
+• Facing some difficult animation sequences, I decided to refactor the codebase and use the [`Provider`](https://pub.dev/packages/provider) pattern to manage the time state and screenSettings state.  With no previous experience using this pattern, the refactor was challenging and took a few days.  The online tutorial [Simple App State Management](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple) provided an excellent resource for understanding and implementing the three key classes: [`ChangeNotifier`](https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html), [`ChangeNotifierProvider`](https://pub.dev/documentation/provider/latest/provider/ChangeNotifierProvider-class.html), and [`Consumer`](https://pub.dev/documentation/provider/latest/provider/Consumer-class.html).  Thank you!
 
 • After refactoring, the codebase is much cleaner and I am amazed at how little code is needed to manage a Timer using the `ChangeNotifierProvider` versus the internal setState methods of the original DigitalClock class.
 
@@ -30,11 +30,11 @@ Our team uses Dart and Flutter to create an engaging, delightful mobile app expe
 
 ## Next Steps
 
-• Design and create additional animations, including other colors, patterns, and randomization
+• Design and create dazzling new animations, including new colors, patterns, and randomization.
 
-• Incorporate a screen to attractively display the location and weather
+• Incorporate a screen to attractively display the location and weather.
 
-• Allow the user to change fonts and color patterns 
+• Allow the user to change fonts and color patterns.
 
 
 ## Conclusion
