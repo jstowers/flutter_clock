@@ -41,7 +41,6 @@ class _SecondsAnimator extends State<SecondsAnimator>
   @override
   void initState() {
     super.initState();
-    print('animationDuration = ${widget.animationDuration}');
     _controller = AnimationController(
       duration: Duration(seconds: widget.animationDuration),
       vsync: this,
