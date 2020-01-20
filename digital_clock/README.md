@@ -2,7 +2,7 @@
 
 ## Thank You
 
-Thank you Google and Lenovo for offering this Clock Design challenge!
+Thank you Google and Lenovo for offering this Clock Design contest!
 
 You provided a great opportunity for me to sharpen my Dart/Flutter skillset.
 
@@ -15,6 +15,10 @@ My name is Joe Stowers and I am a full-stack mobile developer at [Resideo](https
 Resideo is building the next-gen whole-home ecosystem of IoT products, including thermostats, water leak detectors, and air quality monitors.
 
 Our team uses Dart and Flutter to create an engaging, delightful mobile app experience.  This Clock Design contest allowed me to sharpen my Dart/Flutter skillset, especially with Provider and Automations, and exercise my design muscles for fun and pleasure!
+
+## Final Design (sans Animations ;-)
+
+![digital_clock_stowers](digital_clock_screenshot.png)
 
 
 ## Key Learnings
