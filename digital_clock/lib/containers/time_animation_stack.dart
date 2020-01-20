@@ -22,7 +22,7 @@ class TimeAnimationStack extends StatelessWidget {
     switch (quadrantId) {
       case (1):
         timeDigit = timeState.hourDigitTwo;
-        secondInitial = 1;
+        secondInitial = 0;
         secondFinal = 15;
         break;
       case (2):

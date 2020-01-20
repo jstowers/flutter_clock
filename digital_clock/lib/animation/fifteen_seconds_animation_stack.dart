@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../animation/seconds_animator.dart';
-import '../containers/time_digit_container.dart';
+import '../animation/widgets/time_digit_container.dart';
+import 'quadrant_animator.dart';
 
 class FifteenSecondsAnimationStack extends StatelessWidget {
   final int quadrant;
@@ -23,14 +23,12 @@ class FifteenSecondsAnimationStack extends StatelessWidget {
     return Stack(
       key: Key('fifteen_seconds_animation_stack_quadrant_$quadrant'),
       children: <Widget>[
-        (second == 0
-            ? SizedBox.shrink()
-            : second >= secondInitial && second <= 60
-                ? SecondsAnimator(
-                    second: second,
-                    quadrant: quadrant,
-                  )
-                : SizedBox.shrink()),
+        QuadrantAnimator(
+          quadrant: quadrant,
+          second: second,
+          secondInitial: secondInitial,
+          secondFinal: secondFinal,
+        ),
         TimeDigitContainer(
           quadrant: quadrant,
           timeDigit: timeDigit,

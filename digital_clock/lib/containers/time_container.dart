@@ -1,3 +1,5 @@
+import 'package:digital_clock/containers/one_third_time_quadrant.dart';
+import 'package:digital_clock/containers/two_third_time_quadrant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,15 +27,17 @@ class TimeContainer extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              TimeQuadrant(quadrantId: 4, backgroundColor: Colors.green),
-              TimeQuadrant(quadrantId: 1, backgroundColor: Colors.red),
+              OneThirdTimeQuadrant(
+                  quadrantId: 4, backgroundColor: Colors.green),
+              TwoThirdTimeQuadrant(quadrantId: 1, backgroundColor: Colors.red),
             ],
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              TimeQuadrant(quadrantId: 3, backgroundColor: Colors.blue),
-              TimeQuadrant(quadrantId: 2, backgroundColor: Colors.orange),
+              TwoThirdTimeQuadrant(quadrantId: 3, backgroundColor: Colors.blue),
+              OneThirdTimeQuadrant(
+                  quadrantId: 2, backgroundColor: Colors.orange),
             ],
           )
         ],
