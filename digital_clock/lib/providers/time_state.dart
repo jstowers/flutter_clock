@@ -106,10 +106,8 @@ class TimeState extends ChangeNotifier {
   }
 
   void _checkInitialLoadComplete() {
-    print('INSIDE _checkInitialLoadComplete');
     if (_second == 0 || _second == 15 || _second == 30 || _second == 45) {
       _isInitialLoad = false;
-      print('isInitialLoad = $_isInitialLoad');
     }
   }
 
