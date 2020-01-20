@@ -31,6 +31,7 @@ Our team uses Dart and Flutter to create an engaging, delightful mobile app expe
 
 • In my time_state model, an error appears within the Provider package when `notifyListeners()` is called after the first few seconds.  The model stabilizes and this errors disappears.  I researched and debugged this issue but could not eliminate this error on app startup.  Importantly, this error does not affect the clock's accuracy.  I have seen other people report issues where `notifyListeners` calls `setState() or markNeedsBuild() during a build`.  Given the complexity of handling frequent state changes with timers, this issue is less severe than the breaking changes I saw when mixing internal Widget state with a ChangeNotifierProvider.
 
+• As a follow-up to the previous point, I needed to adjust from portrait to landscape mode for the final submission.  After some trial and error, I added a LayoutBuilder widget that defers building until layout.  With this change, the `notifyListeners` errors disappeared.  Cool!
 
 ## Next Steps
 
