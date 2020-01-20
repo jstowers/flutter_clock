@@ -84,6 +84,8 @@ class TimeState extends ChangeNotifier {
 
     if (_second != _dateTime.second) {
       _second = _dateTime.second;
+      print('-------------------------');
+      print('second = $second');
 
       if (_isInitialLoad) {
         _checkInitialLoadComplete();
