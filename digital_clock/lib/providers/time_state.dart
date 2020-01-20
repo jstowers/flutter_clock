@@ -12,7 +12,12 @@ class TimeState extends ChangeNotifier {
 
   void update(ClockModel clockModel) {
     _is24HourFormat = clockModel.is24HourFormat;
-    formatHour();
+
+    if (_dateTime == null) {
+      updateTime();
+    } else {
+      formatHour();
+    }
     notifyListeners();
   }
 
@@ -30,8 +35,9 @@ class TimeState extends ChangeNotifier {
       }
     } else {
       // 24-hour format
-      _hourDigitOne = _hour.toString().substring(0, 1);
-      _hourDigitTwo = _hour.toString().substring(1, 2);
+      final formattedHour = DateFormat('HH').format(_dateTime);
+      _hourDigitOne = formattedHour.substring(0, 1);
+      _hourDigitTwo = formattedHour.substring(1, 2);
     }
   }
 
