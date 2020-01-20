@@ -39,9 +39,10 @@ Our team uses Dart and Flutter to create an engaging, delightful mobile app expe
 
 ## Conclusion
 
-Thank you for your consideration of my Clock Design.  Should you have any questions, please let me know.
+Thank you for your consideration of my Digital Clock Design.  Should you have any questions, please let me know.
 
 Joe Stowers
+
 Monday, January 20, 2020
 
 greenchiletexan@gmail.com
